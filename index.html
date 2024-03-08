@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width， initial-scale=1.0">
+    <title>Hi Grace!</title>
+</head>
+<body>
+<div class="container">
+    <h1>Hi Grace!</h1>
+    <p>当你不开心的时候，来这里看看吧~</p>
+    <div class="heart-rain">
+        <div class="heart"></div>
+        <!-- 更多心形元素 -->
+    </div>
+    <div class="message">
+        <p>生活总会伴随着各种挑战和困扰，这是难免的，</p>
+        <p>但请相信，你拥有足够的智慧和勇气去应对一切困难，</p>
+        <p>困境并非一成不变的，它只是暂时的，</p>
+        <p>保持积极乐观的心态，坚持前行，阳光总会照进你的生活，</p>
+        <p>不要被眼前的阴霾所打垮，相信自己有能力战胜一切，</p>
+        <p>不要否定自己的价值，也不要被别人的言语所动摇，</p>
+        <p>专注于发掘并实现自己的梦想，用自己的热情点亮生命的道路，</p>
+        <p>记住，你比自己所相信的要更加坚强，</p>
+        <p>无论前方的路有多崎岖，都要坚持不懈地前行，因为美好的未来一定在等着你。</p>
+    </div>
+    <div class="scene-container">
+        <div class="scene">
+            <div class="sun"></div>
+            <div class="cloud">
+                <div class="cloud-piece"></div>
+                <div class="cloud-piece"></div>
+                <div class="cloud-piece"></div>
+            </div>
+        </div>
+    </div>
+    <p>Remember To Be Happy~</p>
+</div>
+</body>
+</html>
+<script>
+    // 心形雨
+    const container = document.querySelector('.container');
+    const heartRain = document.querySelector('.heart-rain');
+
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        const x = Math.random() * (window.innerWidth - 40);
+        const side = Math.random() > 0.5 ? 'left' : 'right';
+        heart.style.left = side === 'left' ? `${x}px` : `${window.innerWidth - x}px`;
+        heartRain.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }
+
+    setInterval(createHeart, 500);
+</script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        /*background-color: #f9f9f9;*/
+        overflow: hidden;
+        background-image: url("bg.jpg");
+        /* 背景图垂直、水平均居中 */
+        background-position: center center;
+        /* 背景图不平铺 */
+        background-repeat: no-repeat;
+        /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+        background-attachment: fixed;
+        /* 让背景图基于容器大小伸缩 */
+        background-size: cover;
+        /* 设置背景颜色，背景图加载过程中会显示背景色 */
+        background-color: #464646;
+
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .scene-container {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    .heart-rain {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .heart {
+        width: 20px;
+        height: 18px;
+        background-color: #ff6347;
+        margin: 5px;
+        transform: rotate(-45deg);
+        position: absolute;
+        animation: fall 5s linear infinite;
+    }
+
+    .heart:before,
+    .heart:after {
+        content: "";
+        background-color: #ff6347;
+        border-radius: 50%;
+        position: absolute;
+    }
+
+    .heart:before {
+        width: 20px;
+        height: 20px;
+        top: -10px;
+        left: 0;
+    }
+
+    .heart:after {
+        width: 20px;
+        height: 20px;
+        top: 0;
+        left: 10px;
+    }
+
+    @keyframes fall {
+        0% {
+            opacity: 0;
+        }
+        25%, 75% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(100vh) rotate(-45deg);
+            opacity: 0;
+        }
+    }
+
+    @keyframes fall {
+        0% {
+            transform: translate(0, -100vh) rotate(-45deg);
+        }
+        100% {
+            transform: translate(0, 100vh) rotate(-45deg);
+        }
+    }
+
+    .heart.left {
+        animation: fallFromLeft 5s linear infinite;
+    }
+
+    .heart.right {
+        animation: fallFromRight 5s linear infinite;
+    }
+
+    @keyframes fallFromLeft {
+        0% {
+            transform: translate(-100vw, -100vh) rotate(-45deg);
+        }
+        100% {
+            transform: translate(0, 100vh) rotate(-45deg);
+        }
+    }
+
+    @keyframes fallFromRight {
+        0% {
+            transform: translate(100vw, -100vh) rotate(-45deg);
+        }
+        100% {
+            transform: translate(0, 100vh) rotate(-45deg);
+        }
+    }
+
+    .message {
+        margin-bottom: 20px;
+    }
+
+    .scene {
+        position: relative;
+        height: 300px;
+        width: 400px;
+        overflow: hidden;
+    }
+
+    .sun {
+        position: absolute;
+        top: 50px;
+        right: 50px;
+        width: 80px;
+        height: 80px;
+        background-color: #ffcc00;
+        border-radius: 50%;
+        box-shadow: 0 0 20px #ffcc00;
+        animation: sunGlow 2s infinite alternate;
+    }
+
+    @keyframes sunGlow {
+        0% {
+            box-shadow: 0 0 20px #ffcc00;
+        }
+        100% {
+            box-shadow: 0 0 40px #ffcc00;
+        }
+    }
+
+    .cloud {
+        position: absolute;
+        top: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        animation: moveCloud 30s linear infinite;
+    }
+
+    .cloud-piece {
+        width: 60px;
+        height: 30px;
+        background-color: #fff;
+        border-radius: 30px;
+        margin: 0 10px;
+    }
+
+    @keyframes moveCloud {
+        0% {
+            transform: translateX(-50%) translateX(-100vw);
+        }
+        100% {
+            transform: translateX(-50%) translateX(100vw);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .scene {
+            height: 200px;
+        }
+    }
+</style>
