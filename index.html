@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width， initial-scale=1.0">
     <title>Hi Grace!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script>
 </head>
 <body>
 <div class="container">
-    <h1>Hi Grace!</h1>
-    <p>当你不开心的时候，来这里看看吧~</p>
-    <div class="heart-rain">
-        <div class="heart"></div>
-        <!-- 更多心形元素 -->
-    </div>
     <div class="message">
+        <h1>Hi Grace!</h1>
+        <p>当你不开心的时候，来这里看看吧~</p>
+        <br/>
         <p>生活总会伴随着各种挑战和困扰，这是难免的，</p>
         <p>但请相信，你拥有足够的智慧和勇气去应对一切困难，</p>
         <p>困境并非一成不变的，它只是暂时的，</p>
@@ -21,8 +21,8 @@
         <p>不要被眼前的阴霾所打垮，相信自己有能力战胜一切，</p>
         <p>不要否定自己的价值，也不要被别人的言语所动摇，</p>
         <p>专注于发掘并实现自己的梦想，用自己的热情点亮生命的道路，</p>
-        <p>记住，你比自己所相信的要更加坚强，</p>
-        <p>无论前方的路有多崎岖，都要坚持不懈地前行，因为美好的未来一定在等着你。</p>
+        <p>记住，你比自己所相信的要更加坚强。</p>
+        <p>Remember To Be Happy~</p>
     </div>
     <div class="scene-container">
         <div class="scene">
@@ -34,30 +34,11 @@
             </div>
         </div>
     </div>
-    <p>Remember To Be Happy~</p>
+    <div id="aplayer" class="aplayer" data-order="random" data-id="6596455793" data-server="netease"
+         data-type="playlist" data-fixed="true" data-autoplay="false" data-volume="0.6"></div>
 </div>
 </body>
 </html>
-<script>
-    // 心形雨
-    const container = document.querySelector('.container');
-    const heartRain = document.querySelector('.heart-rain');
-
-    function createHeart() {
-        const heart = document.createElement('div');
-        heart.classList.add('heart');
-        const x = Math.random() * (window.innerWidth - 40);
-        const side = Math.random() > 0.5 ? 'left' : 'right';
-        heart.style.left = side === 'left' ? `${x}px` : `${window.innerWidth - x}px`;
-        heartRain.appendChild(heart);
-
-        setTimeout(() => {
-            heart.remove();
-        }, 5000);
-    }
-
-    setInterval(createHeart, 500);
-</script>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -88,93 +69,6 @@
         position: absolute;
         top: 20px;
         right: 20px;
-    }
-
-    .heart-rain {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-bottom: 20px;
-    }
-
-    .heart {
-        width: 20px;
-        height: 18px;
-        background-color: #ff6347;
-        margin: 5px;
-        transform: rotate(-45deg);
-        position: absolute;
-        animation: fall 5s linear infinite;
-    }
-
-    .heart:before,
-    .heart:after {
-        content: "";
-        background-color: #ff6347;
-        border-radius: 50%;
-        position: absolute;
-    }
-
-    .heart:before {
-        width: 20px;
-        height: 20px;
-        top: -10px;
-        left: 0;
-    }
-
-    .heart:after {
-        width: 20px;
-        height: 20px;
-        top: 0;
-        left: 10px;
-    }
-
-    @keyframes fall {
-        0% {
-            opacity: 0;
-        }
-        25%, 75% {
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(100vh) rotate(-45deg);
-            opacity: 0;
-        }
-    }
-
-    @keyframes fall {
-        0% {
-            transform: translate(0, -100vh) rotate(-45deg);
-        }
-        100% {
-            transform: translate(0, 100vh) rotate(-45deg);
-        }
-    }
-
-    .heart.left {
-        animation: fallFromLeft 5s linear infinite;
-    }
-
-    .heart.right {
-        animation: fallFromRight 5s linear infinite;
-    }
-
-    @keyframes fallFromLeft {
-        0% {
-            transform: translate(-100vw, -100vh) rotate(-45deg);
-        }
-        100% {
-            transform: translate(0, 100vh) rotate(-45deg);
-        }
-    }
-
-    @keyframes fallFromRight {
-        0% {
-            transform: translate(100vw, -100vh) rotate(-45deg);
-        }
-        100% {
-            transform: translate(0, 100vh) rotate(-45deg);
-        }
     }
 
     .message {
@@ -235,9 +129,25 @@
         }
     }
 
-    @media (max-width: 480px) {
+    /*移动端*/
+    @media (max-width: 767px) {
         .scene {
             height: 200px;
+            width: 300px;
+        }
+        .sun {
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+        }
+        .cloud {
+            top: 40px;
+        }
+        .cloud-piece {
+            width: 30px;
+            height: 15px;
         }
     }
+    /*移动端*/
 </style>
