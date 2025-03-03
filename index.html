@@ -12,6 +12,7 @@
 </head>
 <body>
 <canvas id="mycanvas"></canvas>
+<div class="birthday-text" id="birthdayText">🎉🎉🎉生日快乐!🎉🎉🎉</div>
 <div class="container">
     <div class="message">
         <h1>Hi Grace!</h1>
@@ -379,6 +380,7 @@
             flag = true;
         }else if (isBirthDay(now)) {
             document.title = 'Grace，生日快乐！'
+            document.getElementById("birthdayText").style.display = "block"; // 显示
             flag = true;
         }
         if (flag){
@@ -507,4 +509,13 @@
         }
     }
     /*移动端*/
+    /* 文字样式 */
+    .birthday-text {
+        font-size: 50px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        animation: glow 1.5s infinite alternate;
+        display: none; /* 默认隐藏 */
+    }
 </style>
